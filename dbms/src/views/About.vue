@@ -1,21 +1,35 @@
 <template>
-  <div class="about">
+  <div class="duty">
       <el-table
       :data="tableData"
-      style="width: 100%">
+      style="width: 100%"
+      :default-sort = "{prop: 'date', order: 'descending'}"
+      >
       <el-table-column
-        prop="date"
-        label="日期"
+        prop="Id"
+        label="Id"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="值班dba"
-        width="180">
+        prop="Begindate"
+        label="Begindate"
+        sortable
+        width="240">
       </el-table-column>
             <el-table-column
-        prop="tel"
-        label="联系电话"
+        prop="Enddate"
+        label="Enddate"
+        sortable
+        width="240">
+      </el-table-column>
+                  <el-table-column
+        prop="Request_person"
+        label="Request_person"
+        width="180">
+      </el-table-column>
+                  <el-table-column
+        prop="Alert_person"
+        label="Alert_person"
         width="180">
       </el-table-column>
     </el-table>
@@ -25,8 +39,30 @@
 
 <script>
 // @ is an alias to /src
+import * as API from '@/api/dbinstance/';
+
 
 export default {
-  name: 'about',
+  name: 'duty',
+  data() {
+return {
+ tableData :[],
+};
+},
+methods :{
+  load(){
+    API.getDutys().then((res) => {
+      this.tableData = res.data;
+    });
+  },
+          formatter(row) {
+        return row.master_slave;
+      }
+},
+components:{
+  },
+  beforeMount() {
+    this.load();
+  },
 }
 </script>
