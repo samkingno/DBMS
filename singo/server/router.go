@@ -22,6 +22,10 @@ func NewRouter() *gin.Engine {
 	{
 
 		v1.GET("dbinstances", api.ListDbinstances)
+		v1.GET("duty", api.ListDuty)
+		v1.POST("duty", api.CreateDuty)
+		v1.POST("pg_request", api.Pg_request)
+
 		v1.POST("ping", api.Ping)
 
 		// 用户登录
@@ -41,3 +45,10 @@ func NewRouter() *gin.Engine {
 	}
 	return r
 }
+
+
+
+
+
+
+  

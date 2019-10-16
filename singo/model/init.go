@@ -3,9 +3,7 @@ package model
 import (
 	"singo/util"
 	"time"
-
 	"github.com/jinzhu/gorm"
-
 	//
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
@@ -13,7 +11,7 @@ import (
 // DB 数据库链接单例
 var DB *gorm.DB
 
-// Database 在中间件中初始化mysql链接
+// Database 在中间件中初始化postgres链接
 func Database() {
 	db, err := gorm.Open("postgres", "host=localhost port=5432 user=zhiyinwen dbname=zhiyinwen  sslmode=disable")
 	db.LogMode(true)
